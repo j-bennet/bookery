@@ -24,9 +24,9 @@ class Book(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    year = models.IntegerField()
-    category = models.CharField(max_length=100, choices=CATEGORIES)
-    language = models.CharField(max_length=100, choices=LANGUAGES)
+    year = models.IntegerField(null=True, blank=True)
+    category = models.CharField(max_length=100, choices=CATEGORIES, default="Fiction")
+    language = models.CharField(max_length=100, choices=LANGUAGES, default="en")
 
     class Meta:
         ordering = ["title"]
