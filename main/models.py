@@ -21,8 +21,12 @@ LANGUAGES = [
 
 # Create your models here.
 class Book(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     year = models.IntegerField()
     category = models.CharField(max_length=100, choices=CATEGORIES)
     language = models.CharField(max_length=100, choices=LANGUAGES)
+
+    class Meta:
+        ordering = ["title"]
