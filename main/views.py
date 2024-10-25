@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, mixins
 
 from main.models import Book
@@ -9,6 +10,8 @@ class BookList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["category", "language", "author"]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -27,6 +30,8 @@ class BookDetail(
 
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["category", "language", "author"]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
