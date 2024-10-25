@@ -12,6 +12,7 @@ class BookList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["category", "language", "author"]
+    search_fields = ["title", "author"]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -32,6 +33,7 @@ class BookDetail(
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["category", "language", "author"]
+    search_fields = ["title", "author"]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
